@@ -1,0 +1,61 @@
+{% extends "model-page.html"%}
+
+
+{% block content %}
+<h1 CLASS="TEXT-CENTER">CADASTRO DE CANDIDATO</h1>
+<style>
+    .polaroid{
+
+        text-align: left;
+        font-size:1.5vh;
+        margin-top: 30px;
+        margin-left: -300px;
+        padding-align: left;
+                }
+</style>
+<input type="number" class=""form-control" name="pessoa_id" value="{{pessoa.id}}" hidden>
+
+<div class="container mp-1 mb-4">
+<form enctype="multipart/form-data" action="submit", method="POST">{% csrf_token %}
+
+<div class="polaroid">
+  <div class="mb-2 mt-3">
+    <label for="name" class="form-label"><b>Nome:</b></label>
+    <input type="text" class="form-control" id="name" placeholder="Informe o nome" name="name" value="{{pessoa.Nome}}">
+  </div>
+
+  <div class="mb-2 mt-3">
+    <label for="phone" class="form-label"><b>Telefone:</b></label>
+    <input type="tel" class="form-control" id="phone" placeholder="Informe o telefone com DDD" name="phone" value="{{pessoa.Telefone}}">
+  </div>
+
+  <div class="mb-2 mt-3">
+    <label for="Mail" class="form-label"><b>Email:</b></label>
+    <input type="email" class="form-control" id="mail" placeholder="Informe o e-mail" name="mail" value="{{pessoa.Email}}">
+  </div>
+
+  <div class="form-group">
+    <a href="/Media/{{p.Foto}}" target="_blank">Foto Atual</a>
+    <input type="file" class="form-control-file border" name="file" value="{{p.Foto}}" accept="image/*">
+  </div>
+
+  <div class="form-check mb-3">
+    <label class="form-check-label">
+      <input class="form-check-input" type="checkbox" name="status" checked value="{{pessoa.Ativo}}"> Ativo </label>
+  </div>
+
+
+<button type="submit" class="btn btn-primary">
+         {% if pessoa %}
+            Alterar
+         {% else %}
+            Cadastrar
+         {% endif %}
+</button>
+</form>
+
+</div>
+
+</div>
+
+{% endblock %}
